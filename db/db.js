@@ -38,16 +38,15 @@ const HoursSchema = new Schema({
 const PackageSchema = new Schema(
   {
     name: { type: String, required: true },
-    id: { type: Number, required: true },
     mid: { type: String, required: true },
     weight: { type: Number, required: true },
     delivery_price: { type: Number, required: true },
     quantity: { type: Number, required: true },
-    status: { type: String, required: true },
+    status: { type: String, default: "Pending" },
     track_number: { type: String, required: true },
     businessId: { type: String, required: true },
-    clientId: { type: String, required: true },
-    agentId: { type: String, required: true },
+    clientId: { type: String, default: "Pending" },
+    agentId: { type: String, default: "Pending" },
   },
   { timestamps: true }
 );
@@ -114,6 +113,7 @@ const shopOwnerSchema = new Schema(
 );
 
 const Business = mongoose.model("Business", businessSchema);
+const Package = mongoose.model("Package", PackageSchema);
 const Agent = mongoose.model("Agent", agentSchema);
 const Owner = mongoose.model("Owner", shopOwnerSchema);
 

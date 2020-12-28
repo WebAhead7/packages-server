@@ -22,4 +22,7 @@ app.use(express.json());
 app.get("/business/:id", getBusinessMiddleware, returnBusiness);
 app.post("/business", addBusiness);
 
+app.get("/owner/:id", getBusinessMiddleware, returnBusiness);
+app.post("/owner", addBusiness);
+
 app.listen(PORT, () => console.log(`Server started`));

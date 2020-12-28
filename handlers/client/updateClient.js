@@ -1,6 +1,6 @@
 const { Business } = require("../../db/db");
 
-const addClient = async (req, res, next) => {
+const updateClient = async (req, res, next) => {
   const businessId = req.params.id;
   const client = {
     firstname: req.body.name,
@@ -12,7 +12,7 @@ const addClient = async (req, res, next) => {
 
   try {
     await Business.findOneAndUpdate(
-      { _id: businessId },
+      { "clients._id": "asd5a4asd" },
       {
         $push: {
           clients: client,
@@ -25,4 +25,4 @@ const addClient = async (req, res, next) => {
   }
 };
 
-module.exports = addClient;
+module.exports = updateClient;

@@ -54,7 +54,8 @@ const PackageSchema = new Schema(
 
 const ClientSchema = new Schema(
   {
-    name: { type: String, required: true },
+    firstname: { type: String, required: true },
+    lastname: { type: String, required: true },
     id: { type: Number, required: true },
     address: { type: AddressSchema, required: true },
     phone: { type: Number, required: true },
@@ -101,9 +102,7 @@ const shopOwnerSchema = new Schema(
   {
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now },
     phone: { type: Number, min: 10 },
-    city: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
     phone: { type: Number, min: 8 },

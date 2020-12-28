@@ -1,5 +1,5 @@
-const returnBusiness = (req, res, next) => {
+const getBusiness = (req, res, next) => {
   res.json(res.business);
 };
 
-module.exports = returnBusiness;
+module.exports = getBusiness;

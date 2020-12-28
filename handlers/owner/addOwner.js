@@ -6,9 +6,10 @@ const addOwner = async (req, res, next) => {
     lastname: req.body.lastname,
     phone: req.body.phone,
     email: req.body.email,
-    address: req.body.address,
+    password: req.body.password,
     idImage: req.body.idImage,
     businessId: req.body.businessId,
+    address: req.body.address,
     payment: req.body.payment,
   });
 

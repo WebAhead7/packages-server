@@ -1,7 +1,7 @@
 const { Business } = require("../../db/db");
 
 const addBusiness = async (req, res, next) => {
-  const client = new Client({
+  const business = new Business({
     name: req.body.name,
     storeId: req.body.storeId,
     category: req.body.category,

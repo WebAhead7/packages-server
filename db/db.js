@@ -38,15 +38,16 @@ const HoursSchema = new Schema({
 const PackageSchema = new Schema(
   {
     name: { type: String, required: true },
+    id: { type: Number, required: true },
     mid: { type: String, required: true },
     weight: { type: Number, required: true },
     delivery_price: { type: Number, required: true },
     quantity: { type: Number, required: true },
-    status: { type: String, default: "Pending" },
+    status: { type: String, required: true },
     track_number: { type: String, required: true },
     businessId: { type: String, required: true },
-    clientId: { type: String, default: "Pending" },
-    agentId: { type: String, default: "Pending" },
+    clientId: { type: String, required: true },
+    agentId: { type: String, required: true },
   },
   { timestamps: true }
 );
@@ -104,6 +105,7 @@ const shopOwnerSchema = new Schema(
     phone: { type: Number, min: 10 },
     email: { type: String, required: true },
     password: { type: String, required: true },
+    phone: { type: Number, min: 8 },
     idImage: { type: String, required: true },
     businessId: { type: Number, min: 8, required: true },
     address: { type: AddressSchema, required: true },
@@ -115,6 +117,8 @@ const shopOwnerSchema = new Schema(
 const Business = mongoose.model("Business", businessSchema);
 const Package = mongoose.model("Package", PackageSchema);
 const Agent = mongoose.model("Agent", agentSchema);
-const Owner = mongoose.model("Owner", shopOwnerSchema);
+const Shopowner = mongoose.model("Owner", shopOwnerSchema);
 
-module.exports = { Owner, Agent, Business };
+module.exports = { Shopowner, Agent, Business, Package };
+
+

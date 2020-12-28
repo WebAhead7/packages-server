@@ -1,18 +1,18 @@
-const { Package } = require("../../db/db");
+const { Business } = require("../../db/db");
 
 const getPackage = async (req, res, next) => {
-    let package;
+    let packages;
 
     try {
-        package = await Package.findById(req.params.id);
-        if (package == null) {
-            return res.status(404).json({ message: "Cannot find package" });
+        packages = await Business.findById(req.params.id);
+        if (packages == null) {
+            return res.status(404).json({ message: "No Packages Yet!" });
         }
     } catch (err) {
         return res.status(500).json({ message: err.message });
     }
 
-    res.package = package;
+    res.packages = packages.items;
     next();
 };
 

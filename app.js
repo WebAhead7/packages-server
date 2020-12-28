@@ -9,6 +9,12 @@ const getBusiness = require("./handlers/business/getBusiness");
 const getPackageMiddleware = require("./handlers/package/getPackageMiddleware");
 const getPackage = require("./handlers/package/getPackage");
 const addBusiness = require("./handlers/business/addBusiness");
+
+const addAgent = require("./handlers/agent/addAgent");
+const getAgent = require("./handlers/agent/getAgent");
+const getAgentMiddleware = require("./handlers/agent/getAgentMiddleware");
+const updateAgent = require("./handlers/agent/updateAgent");
+
 const addPackage = require("./handlers/package/addPackage");
 const updatePackage = require("./handlers/package/updatePackage");
 const deletePackage = require("./handlers/package/deletePackage");
@@ -17,6 +23,7 @@ const getOwnerMiddleware = require("./handlers/owner/getOwnerMiddleware");
 const getOwner = require("./handlers/owner/getOwner");
 const addOwner = require("./handlers/owner/addOwner");
 const updateOwner = require("./handlers/owner/updateOwner");
+
 
 moongose.connect(DATABASE_URL, {
   useNewUrlParser: true,
@@ -41,5 +48,9 @@ app.get("/package/:id", getPackageMiddleware, getPackage);
 app.post("/package/:businessId", addPackage);
 app.put("/package/:businessId/:packageId", updatePackage);
 app.delete("/package/:businessId/:packageId", deletePackage);
+
+app.get("/agent/:id", getAgentMiddleware, getAgent);
+app.post("/agent", addAgent);
+app.patch("/agent/:id", updateAgent);
 
 app.listen(PORT, () => console.log(`Server started`));

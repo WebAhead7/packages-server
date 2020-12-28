@@ -105,7 +105,6 @@ const shopOwnerSchema = new Schema(
     phone: { type: Number, min: 10 },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    phone: { type: Number, min: 8 },
     idImage: { type: String, required: true },
     businessId: { type: Number, min: 8, required: true },
     address: { type: AddressSchema, required: true },
@@ -116,6 +115,6 @@ const shopOwnerSchema = new Schema(
 
 const Business = mongoose.model("Business", businessSchema);
 const Agent = mongoose.model("Agent", agentSchema);
-const Shopowner = mongoose.model("Owner", shopOwnerSchema);
+const Owner = mongoose.model("Owner", shopOwnerSchema);
 
-module.exports = { Shopowner, Agent, Business };
+module.exports = { Owner, Agent, Business };

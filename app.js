@@ -4,9 +4,9 @@ const app = express();
 const moongose = require("mongoose");
 const PORT = process.env.PORT;
 const DATABASE_URL = process.env.DATABASE_URL;
-const getBusiness = require("./handlers/test");
-const returnBusiness = require("./handlers/get");
-const addBusiness = require("./handlers/post");
+const getBusinessMiddleware = require("./handlers/business/getBusinessMiddleware");
+const returnBusiness = require("./handlers/business/getBusiness");
+const addBusiness = require("./handlers/business/addBusiness");
 
 moongose.connect(DATABASE_URL, {
   useNewUrlParser: true,
@@ -19,7 +19,7 @@ db.once("open", () => console.log("Connected to Database"));
 
 app.use(express.json());
 
-app.get("/business/:id", getBusiness, returnBusiness);
+app.get("/business/:id", getBusinessMiddleware, returnBusiness);
 app.post("/business", addBusiness);
 
 app.listen(PORT, () => console.log(`Server started`));

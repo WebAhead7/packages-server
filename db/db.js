@@ -26,9 +26,15 @@ const Bank = new Schema({
   account_no: { type: String, required: true },
 });
 
-const package = new Schema({
+const Hours = new Schema({
+  day: { type: String, required: true },
+  open: { type: String, required: true },
+  close: { type: String, required: true },
+});
+
+const Package = new Schema({
   name: { type: String, required: true },
-  date: { type: Date, required: true },
+  createdAt: { type: Date, default: Date.now },
   id: { type: Number, required: true },
   mid: { type: String, required: true },
   weight: { type: Number, required: true },
@@ -47,18 +53,22 @@ const Client = new Schema({
   address: { type: Address, required: true },
   phone: { type: Number, required: true },
   email: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
 });
 
 const business = new Schema({
+  name: { type: String, required: true },
   storeId: { type: String, required: true },
   category: { type: [String], required: true },
-  items: { type: [package] },
+  items: { type: [Package] },
   clients: { type: [Client] },
   phone: { type: Number, required: true },
   fax: { type: Number, required: true },
   email: { type: String, required: true },
   about: { type: String, required: true },
   address: { type: Address, required: true },
+  // hours: { type: Hours, required: true },
+  createdAt: { type: Date, default: Date.now },
 });
 
 const Business = mongoose.model("Business", business);
@@ -78,6 +88,7 @@ const agent = new Schema({
   rating: { type: Number, required: true },
   Bank: { type: Bank, required: true },
   monthly_paychecks: { type: Boolean, required: true },
+  createdAt: { type: Date, default: Date.now },
 });
 
 const Agent = mongoose.model("Agent", agent);
@@ -85,6 +96,7 @@ const Agent = mongoose.model("Agent", agent);
 const shopOwner = new Schema({
   firstname: { type: String, required: true },
   lastname: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
   phone: { type: Number, min: 10 },
   city: { type: String, required: true },
   email: { type: String, required: true },
@@ -94,6 +106,7 @@ const shopOwner = new Schema({
   businessId: { type: Number, min: 8, required: true },
   address: { type: Address, required: true },
   payment: { type: Payment, required: true },
+  createdAt: { type: Date, default: Date.now },
 });
 
 const Shopowner = mongoose.model("Owner", shopOwner);

@@ -7,11 +7,11 @@ const DATABASE_URL = process.env.DATABASE_URL;
 const getBusinessMiddleware = require("./handlers/business/getBusinessMiddleware");
 const getBusiness = require("./handlers/business/getBusiness");
 const getPackageMiddleware = require("./handlers/package/getPackageMiddleware");
-const returnBusiness = require("./handlers/business/getBusiness");
-const returnPackage = require("./handlers/package/getPackage");
+const getPackage = require("./handlers/package/getPackage");
 const addBusiness = require("./handlers/business/addBusiness");
 const addPackage = require("./handlers/package/addPackage");
 const updatePackage = require("./handlers/package/updatePackage");
+const deletePackage = require("./handlers/package/deletePackage");
 
 const getOwnerMiddleware = require("./handlers/owner/getOwnerMiddleware");
 const getOwner = require("./handlers/owner/getOwner");
@@ -37,8 +37,9 @@ app.get("/owner/:id", getOwnerMiddleware, getOwner);
 app.post("/owner", addOwner);
 app.put("/owner/:id", updateOwner);
 
-app.get("/package/:id", getPackageMiddleware, returnPackage);
+app.get("/package/:id", getPackageMiddleware, getPackage);
 app.post("/package/:businessId", addPackage);
 app.put("/package/:businessId/:packageId", updatePackage);
+app.delete("/package/:businessId/:packageId", deletePackage);
 
 app.listen(PORT, () => console.log(`Server started`));

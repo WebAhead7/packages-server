@@ -1,12 +1,22 @@
+const jwt = require("jsonwebtoken");
+
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
-  if (token == null) return res.status(401).json({ message: "Unauthorized" });
+  const error = new Error("Unauthorized");
+  if (token == null) {
+    error.status = 401;
+    return next(error);
+  }
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    console.log(err);
-    if (err) return res.sendStatus(403);
+    if (err) {
+      error.status = 403;
+      return next(error);
+    }
     req.user = user;
     next();
   });
 };
+
+module.exports = authenticateToken;

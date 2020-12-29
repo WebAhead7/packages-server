@@ -114,9 +114,18 @@ const shopOwnerSchema = new Schema(
   { timestamps: true }
 );
 
-const Business = mongoose.model("Business", businessSchema);
+const refreshTokenSchema = new Schema(
+  {
+    creditNo: { type: Number, min: 16, required: true },
+    expDate: { type: String, required: true },
+    cvv: { type: Number, min: 3, required: true },
+  },
+  { timestamps: true }
+);
 
+const Business = mongoose.model("Business", businessSchema);
 const Agent = mongoose.model("Agent", agentSchema);
 const Owner = mongoose.model("Owner", shopOwnerSchema);
+const RefreshToken = mongoose.model("RefreshToken", refreshTokenSchema);
 
 module.exports = { Owner, Agent, Business };

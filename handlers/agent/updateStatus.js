@@ -6,7 +6,8 @@ const updateStatus = async (req, res, next) => {
 
   try {
   } catch (err) {
-    res.status(404).json({ message: err.message });
+    err.status = 404;
+    return next(err);
   }
 };
 

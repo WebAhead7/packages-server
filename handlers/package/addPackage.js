@@ -28,7 +28,8 @@ const addPackage = async (req, res, next) => {
 
     res.status(201).json({ message: "Package added successfuly" });
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    err.status = 400;
+    return next(err);
   }
 };
 

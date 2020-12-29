@@ -6,10 +6,12 @@ const getBusiness = async (req, res, next) => {
   try {
     business = await Business.findById(req.params.id);
     if (business == null) {
-      return res.status(404).json({ message: "Cannot find business" });
+      const error = new Error("Cannot find business");
+      error.status = 404;
+      return next(error);
     }
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    return next(err);
   }
 
   res.business = business;

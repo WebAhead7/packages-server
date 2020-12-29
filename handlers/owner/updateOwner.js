@@ -16,7 +16,8 @@ const updateOwner = async (req, res, next) => {
     );
     res.status(201).json(updatedOwner);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    err.status = 400;
+    return next(err);
   }
 };
 

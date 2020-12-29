@@ -4,11 +4,13 @@ const getAgent = async (req, res, next) => {
   const agent_id = req.params.id;
   try {
     const agentById = await Agent.findById(agent_id).exec();
-    if (agentByID == null) {
-      return res.status(404).json({ message: "Cannot find agent" });
+    if (agentById == null) {
+      const error = new Error("Cannot find agent");
+      error.status = 404;
+      return next(error);
     }
   } catch (err) {
-    res.status(404).send({ message: err.message });
+    return next(err);
   }
   res.agent = agentById;
   next();

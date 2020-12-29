@@ -17,7 +17,8 @@ const addOwner = async (req, res, next) => {
     const newOwner = await owner.save();
     res.status(201).json(newOwner);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    err.status = 400;
+    return next(err);
   }
 };
 

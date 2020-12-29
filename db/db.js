@@ -115,10 +115,8 @@ const shopOwnerSchema = new Schema(
 );
 
 const Business = mongoose.model("Business", businessSchema);
-const Package = mongoose.model("Package", PackageSchema);
+
 const Agent = mongoose.model("Agent", agentSchema);
-const Shopowner = mongoose.model("Owner", shopOwnerSchema);
+const Owner = mongoose.model("Owner", shopOwnerSchema);
 
-module.exports = { Shopowner, Agent, Business, Package };
-
-
+module.exports = { Owner, Agent, Business };

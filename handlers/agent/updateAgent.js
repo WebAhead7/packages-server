@@ -6,9 +6,10 @@ const updateAgent = async (req, res, next) => {
 
   try {
     const agent = await Agent.findByIdAndUpdate(id, updates, { new: true });
-    res.status(200).json(agent);
+    return res.status(200).json(agent);
   } catch (err) {
-    res.status(404).json({ message: err.message });
+    err.status = 404;
+    return next(err);
   }
 };
 

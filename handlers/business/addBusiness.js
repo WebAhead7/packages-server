@@ -18,7 +18,8 @@ const addBusiness = async (req, res, next) => {
     const newBusiness = await business.save();
     res.status(201).json(newBusiness);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    err.status = 400;
+    return next(err);
   }
 };
 

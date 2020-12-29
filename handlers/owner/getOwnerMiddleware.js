@@ -3,13 +3,17 @@ const { Owner } = require("../../db/db");
 const getOwnerMiddleware = async (req, res, next) => {
   let owner;
 
+  console.log("got here");
+
   try {
     owner = await Owner.findById(req.params.id);
     if (owner == null) {
-      return res.status(404).json({ message: "Cannot find owner" });
+      const error = new Error("Cannot find owner");
+      error.status = 404;
+      return next(error);
     }
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    return next(err);
   }
 
   res.owner = owner;

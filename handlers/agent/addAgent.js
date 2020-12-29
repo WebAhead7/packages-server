@@ -19,9 +19,9 @@ const addAgent = async (req, res, next) => {
 
   try {
     const newAgent = await agent.save();
-    res.status(201).json(newAgent);
+    return res.status(201).json(newAgent);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    return next(err);
   }
 };
 

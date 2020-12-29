@@ -15,7 +15,8 @@ const addOwner = async (req, res, next) => {
 
   try {
     const newOwner = await owner.save();
-    res.status(201).json(newOwner);
+    res.cookie = req.cookie;
+    res.status(201).json({ token: res.token });
   } catch (err) {
     err.status = 400;
     return next(err);

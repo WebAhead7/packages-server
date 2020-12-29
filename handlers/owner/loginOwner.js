@@ -1,5 +1,5 @@
 const { Owner } = require("../../db/db");
-const { getOwnerByEmail } = require("../../handlers/owner/loginOwner");
+const bcrypt = require("bcrypt");
 
 const loginOwner = async (req, res, next) => {
   const owner = res.owner;
@@ -9,13 +9,21 @@ const loginOwner = async (req, res, next) => {
   };
 
   try {
-    console.log(owner);
-    console.log(login);
-    res.status(200).json(owner);
+    if (owner) {
+      if (owner[0].password === login.password) {
+        return res.send("Success");
+      } else {
+        return res.send("Not Allowed");
+      }
+    } else {
+    }
   } catch (err) {
     err.status = 400;
     return next(err);
   }
+  res.status(200).json(owner);
 };
 
 module.exports = loginOwner;
+
+//await bcrypt.compare(req.body.password, user.password)

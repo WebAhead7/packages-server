@@ -5,6 +5,8 @@ const getPackageMiddleware = require("../handlers/package/getPackageMiddleware")
 const getPackages = require("../handlers/package/getPackages");
 const getOnePackage = require("../handlers/package/getOnePackage");
 const updatePackageStatus = require("../handlers/package/updatePackageStatus");
+const getFilteredPackagesMiddleware = require("../handlers/package/getFilteredPackagesMiddleware");
+const getFilteredPackages = require("../handlers/package/getFilterPackages");
 
 const addPackage = require("../handlers/package/addPackage");
 const updatePackage = require("../handlers/package/updatePackage");
@@ -12,6 +14,12 @@ const deletePackage = require("../handlers/package/deletePackage");
 
 router.get("/package/:id", getPackageMiddleware, getPackages);
 router.get("/package/:id/:packageId", getPackageMiddleware, getOnePackage);
+
+router.get(
+  "/package/allpackages",
+  getFilteredPackagesMiddleware,
+  getFilteredPackages
+);
 
 router.post("/package/:businessId", addPackage);
 router.put("/package/:businessId/:packageId", updatePackage);

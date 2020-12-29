@@ -10,4 +10,6 @@ router.get("/owner/:id", getOwnerMiddleware, getOwner);
 router.post("/owner", addOwner);
 router.put("/owner/:id", updateOwner);
 
+router.post("/owner/login", getOwnerMiddleware);
+
 module.exports = router;

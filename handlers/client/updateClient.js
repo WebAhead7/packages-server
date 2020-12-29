@@ -1,27 +1,34 @@
 const { Business } = require("../../db/db");
 
 const updateClient = async (req, res, next) => {
-  const businessId = req.params.id;
-  const client = {
-    firstname: req.body.name,
-    lastname: req.body.name,
+  const clientId = req.params.clientId;
+  const businessId = req.params.businessId;
+
+  const package = {
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    address: req.body.address,
     phone: req.body.phone,
     email: req.body.email,
-    address: req.body.address,
   };
 
   try {
     await Business.findOneAndUpdate(
-      { "clients._id": "asd5a4asd" },
+      { _id: `${businessId}`, "clients._id": `${clientId}` },
       {
-        $push: {
-          clients: client,
+        $set: {
+          "items.$.firstname": package.firstname,
+          "items.$.lastname": package.lastname,
+          "items.$.address": package.address,
+          "items.$.phone": package.phone,
+          "items.$.email": package.email,
         },
       }
     );
-    res.status(201).json(client);
+
+    return res.status(201).json({ message: "Client updated successfuly" });
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    return next(err);
   }
 };
 

@@ -18,7 +18,7 @@ const updatePackage = async (req, res, next) => {
 
   try {
     await Business.findOneAndUpdate(
-      { "items._id": `${packageId}` },
+      { _id: `${businessId}`, "items._id": `${packageId}` },
       {
         $set: {
           "items.$.name": package.name,

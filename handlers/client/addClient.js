@@ -1,13 +1,14 @@
 const { Business } = require("../../db/db");
 
 const addClient = async (req, res, next) => {
-  const businessId = req.params.id;
+  const businessId = req.params.businessId;
+
   const client = {
-    firstname: req.body.name,
-    lastname: req.body.name,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    address: req.body.address,
     phone: req.body.phone,
     email: req.body.email,
-    address: req.body.address,
   };
 
   try {
@@ -19,9 +20,11 @@ const addClient = async (req, res, next) => {
         },
       }
     );
-    res.status(201).json(client);
+
+    res.status(201).json({ message: "Client added successfuly" });
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    err.status = 400;
+    return next(err);
   }
 };
 

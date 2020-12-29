@@ -1,19 +1,21 @@
 const { Business } = require("../../db/db");
 
-const getBusiness = async (req, res, next) => {
-  let business;
+const getPackage = async (req, res, next) => {
+  let clients;
 
   try {
-    business = await Business.findById(req.params.id);
-    if (business == null) {
-      return res.status(404).json({ message: "Cannot find business" });
+    clients = await Business.findById(req.params.id);
+    if (clients == null) {
+      const error = new Error("Cannot find client");
+      error.status = 404;
+      return next(error);
     }
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    return next(err);
   }
 
-  res.business = business;
+  res.clients = clients;
   next();
 };
 
-module.exports = getBusiness;
+module.exports = getPackage;

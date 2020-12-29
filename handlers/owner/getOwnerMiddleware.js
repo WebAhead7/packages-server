@@ -3,8 +3,6 @@ const { Owner } = require("../../db/db");
 const getOwnerMiddleware = async (req, res, next) => {
   let owner;
 
-  console.log("got here");
-
   try {
     owner = await Owner.findById(req.params.id);
     if (owner == null) {

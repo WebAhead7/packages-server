@@ -4,9 +4,8 @@ const getFilteredPackagesMiddleware = async (req, res, next) => {
   let packages;
 
   try {
-    packages = await Business.find({
-      $and: [{ "items.status": "Pending" }, { "items.agentId": "Pending" }],
-    });
+    packages = await Business.find().select({ items: 1, _id: 0 })
+    packages = packages.map(obj => obj.items).reduce((a, b) => a.concat(b), []);
     if (packages == null) {
       const error = new Error("Cannot find packages");
       error.status = 404;
@@ -16,7 +15,7 @@ const getFilteredPackagesMiddleware = async (req, res, next) => {
     return next(err);
   }
 
-  res.packages = packages.items;
+  res.packages = packages;
   next();
 };
 

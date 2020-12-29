@@ -34,9 +34,9 @@ const updatePackage = async (req, res, next) => {
       }
     );
 
-    return res.status(201).json({ message: "Package updated successfuly" });
+    res.status(201).json({ message: "Package updated successfuly" });
   } catch (err) {
-    return next(err);
+    res.status(400).json({ message: err.message });
   }
 };
 

@@ -5,7 +5,7 @@ const getFilteredPackagesMiddleware = async (req, res, next) => {
 
   try {
     packages = await Business.find({
-      $and: [{ status: "Pending" }, { agentId: "Pending" }],
+      $and: [{ "items.status": "Pending" }, { "items.agentId": "Pending" }],
     });
     if (packages == null) {
       const error = new Error("Cannot find packages");

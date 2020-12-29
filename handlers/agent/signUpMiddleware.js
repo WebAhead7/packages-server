@@ -1,8 +1,8 @@
-const { Owner } = require("../../db/db");
+const { Agent } = require("../../db/db");
 const bcrypt = require("bcrypt");
 
 const signUpMiddleware = async (req, res, next) => {
-  const isFound = res.owner;
+  const isFound = res.agent;
 
   try {
     if (isFound) {

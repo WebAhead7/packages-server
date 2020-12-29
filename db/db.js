@@ -82,6 +82,7 @@ const agentSchema = new Schema(
   {
     first_name: { type: String, required: true },
     last_name: { type: String, required: true },
+    role: { type: String, default: "agent" },
     email: { type: String, required: true },
     password: { type: String, required: true },
     city: { type: String, required: true },
@@ -107,6 +108,7 @@ const shopOwnerSchema = new Schema(
     password: { type: String, required: true },
     phone: { type: Number, min: 8 },
     idImage: { type: String, required: true },
+    role: { type: String, default: "owner" },
     businessId: { type: Number, min: 8, required: true },
     address: { type: AddressSchema, required: true },
     payment: { type: PaymentSchema, required: true },

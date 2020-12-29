@@ -1,4 +1,6 @@
 const { Agent } = require("../../db/db");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const addAgent = async (req, res, next) => {
   const agent = new Agent({
@@ -19,8 +21,10 @@ const addAgent = async (req, res, next) => {
 
   try {
     const newAgent = await agent.save();
-    return res.status(201).json(newAgent);
+    const token = jwt.sign({ agent: newAgent }, process.env.SECRET);
+    res.status(201).json({ accessToken: token });
   } catch (err) {
+    err.status = 400;
     return next(err);
   }
 };

@@ -18,7 +18,7 @@ const authenticateToken = async (req, res, next) => {
     return next(error);
   }
 
-  req.owner = updatedToken;
+  req.agent = updatedToken;
   next();
 };
 

@@ -15,11 +15,7 @@ const deletePackage = require("../handlers/package/deletePackage");
 router.get("/package/:id", getPackageMiddleware, getPackages);
 router.get("/package/:id/:packageId", getPackageMiddleware, getOnePackage);
 
-router.get(
-  "/package/allpackages",
-  getFilteredPackagesMiddleware,
-  getFilteredPackages
-);
+router.get("/package", getFilteredPackagesMiddleware, getFilteredPackages);
 
 router.post("/package/:businessId", addPackage);
 router.put("/package/:businessId/:packageId", updatePackage);

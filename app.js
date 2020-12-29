@@ -23,7 +23,8 @@ const getOwnerMiddleware = require("./handlers/owner/getOwnerMiddleware");
 const getOwner = require("./handlers/owner/getOwner");
 const addOwner = require("./handlers/owner/addOwner");
 const updateOwner = require("./handlers/owner/updateOwner");
-
+const badRequest = require("./handlers/error/badRequest");
+const errorHandler = require("./handlers/error/errorHandler");
 
 moongose.connect(DATABASE_URL, {
   useNewUrlParser: true,
@@ -52,5 +53,8 @@ app.delete("/package/:businessId/:packageId", deletePackage);
 app.get("/agent/:id", getAgentMiddleware, getAgent);
 app.post("/agent", addAgent);
 app.patch("/agent/:id", updateAgent);
+
+app.use(badRequest);
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server started`));

@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 
 const loginOwner = async (req, res, next) => {
   const owner = res.owner[0];
-  owner.role = "shopowner";
 
   const login = {
     email: req.body.email,

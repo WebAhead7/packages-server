@@ -15,7 +15,6 @@ router.post("/owner", addOwner);
 router.put("/owner/:id", authOwner, updateOwner);
 
 router.post("/owner/login", getOwnerByEmail, loginOwner);
-
 router.post("/owner/signup", getOwnerByEmail, signUpMiddleware, addOwner);
 
 module.exports = router;

@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const loginAgent = async (req, res, next) => {
-  const agent = res.owner[0];
+  const agent = res.agent[0];
 
   const login = {
     email: req.body.email,

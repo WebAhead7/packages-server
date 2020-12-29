@@ -1,6 +1,6 @@
 const getOnePackage = (req, res, next) => {
-  const packageId = req.params.packageId;
 
+  console.log("sdsdsd");
   // const package = res.packages.find((package) => package["_id"] == packageId);
 
   res.json(res.packages);

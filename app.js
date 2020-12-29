@@ -25,10 +25,10 @@ db.once("open", () => console.log("Connected to Database"));
 
 app.use(express.json());
 
-app.all("/agent", agentRouter);
-app.all("/owner", ownerRouter);
-app.all("/package", packageRouter);
-app.all("/business", businessRouter);
+app.all(/agent/, agentRouter);
+app.all(/owner/, ownerRouter);
+app.all(/package/, packageRouter);
+app.all(/business/, businessRouter);
 
 app.use(badRequest);
 app.use(errorHandler);

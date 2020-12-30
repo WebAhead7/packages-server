@@ -1,25 +1,26 @@
 const { Business } = require("../../db/db");
 
 const updatePackageStatus = async (req, res, next) => {
-  const packageId = req.params.packageId;
-  const businessId = req.params.businessId;
+    const packageId = req.params.packageId;
+    const businessId = req.params.businessId;
+    const agentId = req.agent._id;
 
-  const status = req.body.status;
+    try {
+        await Business.findOneAndUpdate(
+            { _id: `${businessId}`, "items._id": `${packageId}` },
+            {
+                $set: {
+                    "items.$.status": true,
+                    "items.$.agentId": `${agentId}`
+                },
+            }
+        );
 
-  try {
-    await Business.findOneAndUpdate(
-      { _id: `${businessId}`, "items._id": `${packageId}` },
-      {
-        $set: {
-          "items.$.status": status,
-        },
-      }
-    );
-
-    return res.status(201).json({ message: "Status updated successfuly" });
-  } catch (err) {
-    return next(err);
-  }
+        res.status(201).json({ package_message: "Package status updated successfuly", pas });
+        return next();
+    } catch (err) {
+        return res.status(400).json({ package_message: "Package status wasn't updated" });
+    }
 };
 
 module.exports = updatePackageStatus;

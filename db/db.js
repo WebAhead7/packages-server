@@ -48,6 +48,7 @@ const PackageSchema = new Schema(
     businessId: { type: String, required: true },
     clientId: { type: String, required: true },
     agentId: { type: String, required: true },
+    confirmation: { type: String, required: true },
   },
   { timestamps: true }
 );
@@ -95,6 +96,7 @@ const agentSchema = new Schema(
     rating: { type: Number, default: 5 },
     Bank: { type: BankSchema, required: false },
     monthly_paychecks: { type: Boolean, required: false },
+    items_id: { type: [String], required: false },
   },
   { timestamps: true }
 );

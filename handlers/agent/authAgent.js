@@ -18,7 +18,7 @@ const authenticateToken = async (req, res, next) => {
     return next(error);
   }
 
-  req.agent = updatedToken;
+  res.agent = updatedToken;
   next();
 };
 

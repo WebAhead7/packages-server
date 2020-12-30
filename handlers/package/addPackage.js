@@ -14,6 +14,7 @@ const addPackage = async (req, res, next) => {
     businessId: req.body.businessId,
     clientId: req.body.clientId,
     agentId: req.body.agentId,
+    confirmation: `0125${req.body.mid}grdr${req.body.track_number}548675`,
   };
 
   try {

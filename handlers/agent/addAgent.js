@@ -8,13 +8,13 @@ const addAgent = async (req, res, next) => {
     last_name: req.body.lastname,
     email: req.body.email,
     password: req.body.password,
-    // city: req.body.city,
-    // vehicle_type: req.body.vehicle_type,
-    // vehicle_no: req.body.vehicle_no,
-    // id_num: req.body.id_num,
-    // licenseId: req.body.licenseId,
-    // licenseImage: req.body.licenseImage,
-    // licenseDate: req.body.licenseDate,
+    // address: req.body.address,
+    vehicle_type: req.body.vehicle_type,
+    vehicle_no: req.body.vehicle_no,
+    id_num: req.body.id_num,
+    licenseId: req.body.licenseId,
+    licenseImage: req.body.licenseImage,
+    licenseDate: req.body.licenseDate,
     // rating: req.body.rating,
     // Bank: req.body.Bank,
     // monthly_paychec: req.body.monthly_paychec,
@@ -23,7 +23,8 @@ const addAgent = async (req, res, next) => {
   try {
     const newAgent = await agent.save();
     const token = jwt.sign({ agent: newAgent }, process.env.SECRET);
-    res.status(201).json({ accessToken: token });
+
+    res.status(201).json({ agent: newAgent, accessToken: token });
   } catch (err) {
     err.status = 400;
     return next(err);

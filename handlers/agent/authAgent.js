@@ -18,6 +18,11 @@ const authenticateToken = async (req, res, next) => {
     return next(error);
   }
 
+  if (updatedToken.role !== "agent") {
+    error.status = 403;
+    return next(error);
+  }
+
   req.agent = updatedToken;
   next();
 };

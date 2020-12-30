@@ -14,6 +14,7 @@ const addPackage = async (req, res, next) => {
     businessId: req.body.businessId,
     clientId: req.body.clientId,
     agentId: req.body.agentId,
+    storeAddress: req.body.address,
   };
 
   try {

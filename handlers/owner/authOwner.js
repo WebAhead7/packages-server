@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const authenticateToken = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
-  let updatedToken;
+  let verifiedToken;
   const error = new Error("Unauthorized");
 
   if (token == null) {
@@ -12,13 +12,18 @@ const authenticateToken = async (req, res, next) => {
   }
 
   try {
-    updatedToken = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    verifiedToken = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
   } catch (err) {
     error.status = 403;
     return next(error);
   }
 
-  req.owner = updatedToken;
+  if (verifiedToken.owner.role !== "owner") {
+    error.status = 403;
+    return next(error);
+  }
+
+  res.owner = verifiedToken;
   next();
 };
 

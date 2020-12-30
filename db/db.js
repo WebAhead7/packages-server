@@ -9,9 +9,9 @@ const AddressSchema = new Schema({
   street: { type: String, required: true },
   building: { type: String, required: true },
   apartment: { type: String, required: true },
-  specificAddress: { type: String, required: true },
-  longitude: { type: String, required: true },
-  latitude: { type: String, required: true },
+  specificAddress: { type: String, required: false },
+  longitude: { type: String, required: false },
+  latitude: { type: String, required: false },
 });
 
 const PaymentSchema = new Schema(
@@ -35,10 +35,21 @@ const HoursSchema = new Schema({
   close: { type: String, required: true },
 });
 
+const ClientSchema = new Schema(
+  {
+    firstname: { type: String, required: true },
+    lastname: { type: String, required: true },
+    id: { type: Number, required: true },
+    address: { type: AddressSchema, required: true },
+    phone: { type: Number, required: true },
+    email: { type: String, required: true },
+  },
+  { timestamps: true }
+);
+
 const PackageSchema = new Schema(
   {
     name: { type: String, required: true },
-    id: { type: Number, required: true },
     mid: { type: String, required: true },
     weight: { type: Number, required: true },
     delivery_price: { type: Number, required: true },
@@ -46,6 +57,7 @@ const PackageSchema = new Schema(
     status: { type: String, required: true },
     track_number: { type: String, required: true },
     businessId: { type: String, required: true },
+    storeAddress: { type: AddressSchema, required: true },
     clientId: { type: String, required: true },
     agentId: { type: String, required: true },
     confirmation: { type: String, required: true },
@@ -61,6 +73,9 @@ const ClientSchema = new Schema(
     address: { type: AddressSchema, required: true },
     phone: { type: Number, required: true },
     email: { type: String, required: true },
+    client: { type: ClientSchema, default: "Pending" },
+    agentId: { type: String, default: "Pending" },
+
   },
   { timestamps: true }
 );
@@ -96,7 +111,18 @@ const agentSchema = new Schema(
     rating: { type: Number, default: 5 },
     Bank: { type: BankSchema, required: false },
     monthly_paychecks: { type: Boolean, required: false },
-    items_id: { type: [String], required: false },
+    items: { type: [String] },
+    // address: { type: AddressSchema, required: false },
+    vehicle_type: { type: String, required: true },
+    vehicle_no: { type: Number, required: true },
+    id_num: { type: Number, required: true },
+    licenseId: { type: Number, required: true },
+    // licenseImage: { type: String, required: true },
+    // licenseDate: { type: String, required: true },
+    // rating: { type: Number, default: 5 },
+    // Bank: { type: BankSchema, required: false },
+    // monthly_paychecks: { type: Boolean, required: false },
+
   },
   { timestamps: true }
 );
@@ -120,9 +146,8 @@ const shopOwnerSchema = new Schema(
 
 const refreshTokenSchema = new Schema(
   {
-    creditNo: { type: Number, min: 16, required: true },
-    expDate: { type: String, required: true },
-    cvv: { type: Number, min: 3, required: true },
+    userId: { type: String, required: true },
+    refreshTokens: { type: [String] },
   },
   { timestamps: true }
 );
@@ -130,6 +155,7 @@ const refreshTokenSchema = new Schema(
 const Business = mongoose.model("Business", businessSchema);
 const Agent = mongoose.model("Agent", agentSchema);
 const Owner = mongoose.model("Owner", shopOwnerSchema);
+const Package = mongoose.model("Package", PackageSchema);
 const RefreshToken = mongoose.model("RefreshToken", refreshTokenSchema);
 
-module.exports = { Owner, Agent, Business };
+module.exports = { Owner, Agent, Business, Package };

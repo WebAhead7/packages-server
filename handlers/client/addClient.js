@@ -1,7 +1,10 @@
 const { Business } = require("../../db/db");
 
 const addClient = async (req, res, next) => {
-  const businessId = req.params.businessId;
+  const owner = res.owner.owner;
+  const businessId = owner.businessId;
+
+  console.log(owner);
 
   const client = {
     firstname: req.body.firstname,

@@ -31,7 +31,9 @@ const loginAgent = async (req, res, next) => {
 
   const accessToken = jwt.sign({ agent }, process.env.ACCESS_TOKEN_SECRET);
 
-  res.status(200).json({ accessToken: accessToken });
+  agent.payment = "";
+
+  res.status(200).json({ ...agent, accessToken: accessToken });
 };
 
 module.exports = loginAgent;

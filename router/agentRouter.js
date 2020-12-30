@@ -10,13 +10,16 @@ const getAgentByEmail = require("../handlers/agent/getAgentByEmail");
 const signUpMiddleware = require("../handlers/agent/signUpMiddleware");
 const authAgent = require("../handlers/agent/authAgent");
 const requestPackage = require("../handlers/agent/requestPackage");
+const updatePackageStatus = require("../handlers/package/updatePackageStatus")
+const updateAgentItems = require("../handlers/agent/updateAgentItems")
 
-router.get("/agent/:id", getAgentMiddleware, getAgent);
-router.post("/agent", addAgent);
-router.patch("/agent/:id", updateAgent);
+
+router.get("/agent/:id", authAgent, getAgentMiddleware, getAgent);
+router.put("/agent/:id", authAgent, updateAgent);
 
 router.post("/agent/login", getAgentByEmail, loginAgent);
 router.post("/agent/signup", getAgentByEmail, signUpMiddleware, addAgent);
+
 
 router.get(
   "/agent/requestPackage/:packageId",
@@ -24,5 +27,8 @@ router.get(
   requestPackage,
   updatePackageStatus
 );
+
+router.get("/agent/package/:packageId/:businessId", authAgent, updatePackageStatus, updateAgentItems);
+
 
 module.exports = router;

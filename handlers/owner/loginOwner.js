@@ -29,7 +29,10 @@ const loginOwner = async (req, res, next) => {
     next(err);
   }
 
-  const accessToken = jwt.sign({ owner }, process.env.ACCESS_TOKEN_SECRET);
+  const accessToken = jwt.sign(
+    { owner: owner },
+    process.env.ACCESS_TOKEN_SECRET
+  );
 
   res.status(200).json({ accessToken: accessToken });
 };

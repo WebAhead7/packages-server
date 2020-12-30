@@ -26,6 +26,10 @@ const getFilteredPackagesMiddleware = async (req, res, next) => {
       "items.storeAdress.street": 1,
       "items.storeAdress.longitude": 1,
       "items.storeAdress.latitude": 1,
+      "items.status": 1,
+      "items.agentId": 1,
+      "items._id": 1,
+
       _id: 1,
     });
 

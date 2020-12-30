@@ -20,7 +20,7 @@ router.get("/package/:id/:packageId", getPackageMiddleware, getOnePackage);
 router.get("/package", getFilteredPackagesMiddleware, getFilteredPackages);
 
 router.post("/package/add/:businessId", addPackage);
-router.put("/package/:businessId/:packageId", authOwner, updatePackage);
+router.put("/package/:packageId", authOwner, updatePackage);
 router.put(
   "/package/status/:businessId/:packageId",
   authAgent,

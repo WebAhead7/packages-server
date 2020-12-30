@@ -12,23 +12,25 @@ const authAgent = require("../handlers/agent/authAgent");
 const requestPackage = require("../handlers/agent/requestPackage");
 const updatePackageStatus = require("../handlers/package/updatePackageStatus")
 const updateAgentItems = require("../handlers/agent/updateAgentItems")
+const getAllAgent = require("../handlers/agent/getAllAgent")
 
 
 router.get("/agent/:id", authAgent, getAgentMiddleware, getAgent);
 router.put("/agent/:id", authAgent, updateAgent);
 
+router.get("/agent", getAllAgent, getAgent);
+
 router.post("/agent/login", getAgentByEmail, loginAgent);
 router.post("/agent/signup", getAgentByEmail, signUpMiddleware, addAgent);
 
-
 router.get(
-  "/agent/requestPackage/:packageId",
-  authAgent,
-  requestPackage,
-  updatePackageStatus
+    "/agent/requestPackage/:packageId",
+    authAgent,
+    requestPackage,
+    updatePackageStatus
 );
 
-router.get("/agent/package/:packageId/:businessId", authAgent, updatePackageStatus, updateAgentItems);
+router.get("/agent/package/:packageId", authAgent, updatePackageStatus, updateAgentItems);
 
 
 module.exports = router;

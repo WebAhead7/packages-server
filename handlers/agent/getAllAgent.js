@@ -25,6 +25,7 @@ const getAllAgent = async (req, res, next) => {
     } catch (err) {
         return next(err);
     }
+    console.log(agents);
 
     res.agent = agents;
     next();

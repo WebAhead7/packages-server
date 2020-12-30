@@ -29,7 +29,7 @@ const authenticateToken = async (req, res, next) => {
     return next(error);
   }
 
-  res.agent = updatedToken;
+  req.agent = updatedToken;
   next();
 };
 

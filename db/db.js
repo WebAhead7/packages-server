@@ -58,8 +58,24 @@ const PackageSchema = new Schema(
     track_number: { type: String, required: true },
     businessId: { type: String, required: true },
     storeAddress: { type: AddressSchema, required: true },
+    clientId: { type: String, required: true },
+    agentId: { type: String, required: true },
+    confirmation: { type: String, required: true },
+  },
+  { timestamps: true }
+);
+
+const ClientSchema = new Schema(
+  {
+    firstname: { type: String, required: true },
+    lastname: { type: String, required: true },
+    id: { type: Number, required: true },
+    address: { type: AddressSchema, required: true },
+    phone: { type: Number, required: true },
+    email: { type: String, required: true },
     client: { type: ClientSchema, default: "Pending" },
     agentId: { type: String, default: "Pending" },
+
   },
   { timestamps: true }
 );
@@ -85,6 +101,16 @@ const agentSchema = new Schema(
     role: { type: String, default: "agent" },
     email: { type: String, required: true },
     password: { type: String, required: true },
+    city: { type: String, required: false },
+    vehicle_type: { type: String, required: false },
+    vehicle_no: { type: Number, required: false },
+    id_num: { type: Number, required: false },
+    licenseId: { type: Number, required: false },
+    licenseImage: { type: String, required: false },
+    licenseDate: { type: Date, required: false },
+    rating: { type: Number, default: 5 },
+    Bank: { type: BankSchema, required: false },
+    monthly_paychecks: { type: Boolean, required: false },
     items: { type: [String] },
     // address: { type: AddressSchema, required: false },
     vehicle_type: { type: String, required: true },
@@ -96,6 +122,7 @@ const agentSchema = new Schema(
     // rating: { type: Number, default: 5 },
     // Bank: { type: BankSchema, required: false },
     // monthly_paychecks: { type: Boolean, required: false },
+
   },
   { timestamps: true }
 );

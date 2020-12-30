@@ -4,6 +4,12 @@ const getFilteredPackagesMiddleware = async (req, res, next) => {
   let packages;
 
   try {
+
+    packages = await Business.find().select({ items: 1, _id: 0 });
+    packages = packages
+      .map((obj) => obj.items)
+      .reduce((a, b) => a.concat(b), []);
+
     packages = await Business.find().select({
       "items.businessId": 1,
       "items.name": 1,
@@ -20,13 +26,8 @@ const getFilteredPackagesMiddleware = async (req, res, next) => {
       "items.storeAdress.street": 1,
       "items.storeAdress.longitude": 1,
       "items.storeAdress.latitude": 1,
-
       _id: 1,
     });
-
-    packages = packages
-      .map((obj) => obj.items)
-      .reduce((a, b) => a.concat(b), []);
 
     if (packages == null) {
       const error = new Error("Cannot find packages");

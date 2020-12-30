@@ -14,6 +14,7 @@ const addPackage = async (req, res, next) => {
     businessId: req.body.businessId,
     clientId: req.body.clientId,
     agentId: req.body.agentId,
+    confirmation: `0125${req.body.mid}grdr${req.body.track_number}548675`,
     storeAddress: req.body.address,
   };
 
@@ -27,7 +28,7 @@ const addPackage = async (req, res, next) => {
       }
     );
 
-    res.status(201).json({ message: "Package added successfuly" });
+    return res.status(201).json({ message: "Package added successfuly" });
   } catch (err) {
     err.status = 400;
     return next(err);

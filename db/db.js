@@ -86,16 +86,16 @@ const agentSchema = new Schema(
     email: { type: String, required: true },
     password: { type: String, required: true },
     items: { type: [String] },
-    address: { type: AddressSchema, required: false },
+    // address: { type: AddressSchema, required: false },
     vehicle_type: { type: String, required: true },
     vehicle_no: { type: Number, required: true },
     id_num: { type: Number, required: true },
     licenseId: { type: Number, required: true },
-    licenseImage: { type: String, required: true },
-    licenseDate: { type: String, required: true },
-    rating: { type: Number, default: 5 },
-    Bank: { type: BankSchema, required: false },
-    monthly_paychecks: { type: Boolean, required: false },
+    // licenseImage: { type: String, required: true },
+    // licenseDate: { type: String, required: true },
+    // rating: { type: Number, default: 5 },
+    // Bank: { type: BankSchema, required: false },
+    // monthly_paychecks: { type: Boolean, required: false },
   },
   { timestamps: true }
 );
@@ -128,6 +128,7 @@ const refreshTokenSchema = new Schema(
 const Business = mongoose.model("Business", businessSchema);
 const Agent = mongoose.model("Agent", agentSchema);
 const Owner = mongoose.model("Owner", shopOwnerSchema);
+const Package = mongoose.model("Package", PackageSchema);
 const RefreshToken = mongoose.model("RefreshToken", refreshTokenSchema);
 
-module.exports = { Owner, Agent, Business };
+module.exports = { Owner, Agent, Business, Package };

@@ -12,19 +12,10 @@ const getFilteredPackagesMiddleware = async (req, res, next) => {
       "items.quantity": 1,
       "items.track_number": 1,
       "items.createdAt": 1,
-      "items.client.address.city": 1,
-      "items.client.address.street": 1,
-      "items.client.address.longitude": 1,
-      "items.client.address.latitude": 1,
-      "items.storeAdress.city": 1,
-      "items.storeAdress.street": 1,
-      "items.storeAdress.longitude": 1,
-      "items.storeAdress.latitude": 1,
       "items.status": 1,
       "items.agentId": 1,
       "items._id": 1,
-
-      _id: 0,
+      address: 1,
     });
 
     packages = packages

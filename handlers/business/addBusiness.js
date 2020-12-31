@@ -8,7 +8,7 @@ const addBusiness = async (req, res, next) => {
     items: req.body.items,
     clients: req.body.clients,
     phone: req.body.phone,
-    fax: req.body.fax,
+    mobile: req.body.mobile,
     email: req.body.email,
     about: req.body.about,
     address: req.body.address,

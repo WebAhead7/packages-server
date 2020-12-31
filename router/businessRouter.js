@@ -8,7 +8,7 @@ const addClient = require("../handlers/client/addClient");
 const authOwner = require("../handlers/owner/authOwner");
 
 router.get("/business/:id", getBusinessMiddleware, getBusiness);
-router.post("/business", addBusiness);
+router.post("/business", authOwner, addBusiness); /// ADD BUSINESS ID IN OWNER INFORMATION MIDDLEWARE
 router.post("/business/add_client", authOwner, addClient);
 
 module.exports = router;

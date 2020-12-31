@@ -1,5 +1,5 @@
-const getPackages = (req, res, next) => {
-    res.json(res.packages);
+const getClients = (req, res, next) => {
+  res.json(res.clients);
 };
 
-module.exports = getPackages;
+module.exports = getClients;

@@ -12,7 +12,6 @@ const authOwner = require("../handlers/owner/authOwner");
 
 router.get("/owner/:id", authOwner, getOwnerMiddleware, getOwner);
 router.put("/owner/:id", authOwner, updateOwner);
-
 router.post("/owner/login", getOwnerByEmail, loginOwner);
 router.post("/owner/signup", getOwnerByEmail, signUpMiddleware, addOwner);
 

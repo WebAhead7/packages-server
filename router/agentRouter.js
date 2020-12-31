@@ -9,11 +9,18 @@ const loginAgent = require("../handlers/agent/loginAgent");
 const getAgentByEmail = require("../handlers/agent/getAgentByEmail");
 const signUpMiddleware = require("../handlers/agent/signUpMiddleware");
 const authAgent = require("../handlers/agent/authAgent");
-const requestPackage = require("../handlers/agent/requestPackage");
-const updatePackageStatus = require("../handlers/package/updatePackageStatus")
-const updateAgentItems = require("../handlers/agent/updateAgentItems")
-const getAllAgent = require("../handlers/agent/getAllAgent")
-
+const addPackageIdToAgent = require("../handlers/agent/addPackageIdToAgent");
+const updatePackageStatus = require("../handlers/package/updatePackageStatus");
+const getAllAgent = require("../handlers/agent/getAllAgent");
+const getRequestedPackageBusiness = require("../handlers/business/getRequestedPackageBusiness");
+const getPackageMiddleware = require("../handlers/package/getPackageMiddleware");
+const getOnePackageNext = require("../handlers/package/getOnePackageNext");
+const confirmOwner = require("../handlers/mail/confirmOwner");
+const confirmClient = require("../handlers/mail/confirmClient");
+const confirmPickup = require("../handlers/agent/confirmPickup");
+const getClientMiddleware = require("../handlers/client/getClientMiddleware");
+const getOneClient = require("../handlers/client/getOneClient");
+const addClientToPackage = require("../handlers/client/addClientToPackage");
 
 router.get("/agent/:id", authAgent, getAgentMiddleware, getAgent);
 router.put("/agent/:id", authAgent, updateAgent);
@@ -23,14 +30,26 @@ router.get("/agent", getAllAgent, getAgent);
 router.post("/agent/login", getAgentByEmail, loginAgent);
 router.post("/agent/signup", getAgentByEmail, signUpMiddleware, addAgent);
 
-router.get(
-    "/agent/requestPackage/:packageId",
-    authAgent,
-    requestPackage,
-    updatePackageStatus
+router.post(
+  "/agent/request_package/:businessId/:packageId",
+  authAgent,
+  getPackageMiddleware,
+  getOnePackageNext,
+  addPackageIdToAgent,
+  getRequestedPackageBusiness,
+  updatePackageStatus,
+  confirmOwner
 );
 
-router.get("/agent/package/:packageId", authAgent, updatePackageStatus, updateAgentItems);
-
+router.post(
+  "/agent/confirm_pickup/:businessId/:packageId",
+  authAgent,
+  getPackageMiddleware,
+  getOnePackageNext,
+  confirmPickup,
+  updatePackageStatus,
+  addClientToPackage,
+  confirmClient
+);
 
 module.exports = router;

@@ -1,17 +1,26 @@
 const { Business } = require("../../db/db");
 
 const getRequestedPackageBusiness = async (req, res, next) => {
-  business_id = req.params.businessId;
+  const businessId = req.params.businessId;
+  let business;
   try {
-    const business = await Business.find({
-      _id: business_id,
+    // business = await Business.find({
+    //   _id: businessId,
+    // });
+
+    business = await Business.find({ _id: businessId }).select({
+      name: 1,
+      address: 1,
+      phone: 1,
+      email: 1,
+      _id: 0,
     });
-    business.items = [];
-    res.status(200).json({ business });
   } catch (err) {
     err.status = 404;
     return next(err);
   }
+  res.business = business[0];
+  return next();
 };
 
 module.exports = getRequestedPackageBusiness;

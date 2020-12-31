@@ -76,7 +76,6 @@ const businessSchema = new Schema({
   email: { type: String, required: true },
   about: { type: String, required: true },
   address: { type: AddressSchema, required: true },
-  hours: { type: Hours, required: false },
 });
 
 const agentSchema = new Schema(

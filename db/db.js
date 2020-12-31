@@ -42,10 +42,9 @@ const PackageSchema = new Schema(
     weight: { type: Number, required: true },
     delivery_price: { type: Number, required: true },
     quantity: { type: Number, required: true },
-    status: { type: String, required: true },
+    status: { type: String, default: "Pending" },
     track_number: { type: String, required: true },
     businessId: { type: String, required: true },
-    storeAddress: { type: AddressSchema, required: true },
     clientId: { type: String, required: true },
     agentId: { type: String, required: true },
     confirmation: { type: String, required: true },
@@ -77,7 +76,7 @@ const businessSchema = new Schema({
   email: { type: String, required: true },
   about: { type: String, required: true },
   address: { type: AddressSchema, required: true },
-  // hours: { type: Hours, required: true },
+  hours: { type: Hours, required: false },
 });
 
 const agentSchema = new Schema(

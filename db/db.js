@@ -35,18 +35,6 @@ const HoursSchema = new Schema({
   close: { type: String, required: true },
 });
 
-const ClientSchema = new Schema(
-  {
-    firstname: { type: String, required: true },
-    lastname: { type: String, required: true },
-    id: { type: Number, required: true },
-    address: { type: AddressSchema, required: true },
-    phone: { type: Number, required: true },
-    email: { type: String, required: true },
-  },
-  { timestamps: true }
-);
-
 const PackageSchema = new Schema(
   {
     name: { type: String, required: true },
@@ -73,9 +61,7 @@ const ClientSchema = new Schema(
     address: { type: AddressSchema, required: true },
     phone: { type: Number, required: true },
     email: { type: String, required: true },
-    client: { type: ClientSchema, default: "Pending" },
     agentId: { type: String, default: "Pending" },
-
   },
   { timestamps: true }
 );
@@ -122,7 +108,6 @@ const agentSchema = new Schema(
     // rating: { type: Number, default: 5 },
     // Bank: { type: BankSchema, required: false },
     // monthly_paychecks: { type: Boolean, required: false },
-
   },
   { timestamps: true }
 );

@@ -1,5 +1,4 @@
-const { Business } = require("../../db/db");
-
+const Business = require("../../db/business");
 const deletePackage = async (req, res, next) => {
   console.log(req.params);
 

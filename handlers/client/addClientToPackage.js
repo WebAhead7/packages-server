@@ -1,4 +1,4 @@
-const { Business } = require("../../db/db");
+const Business = require("../../db/business");
 
 const addClientToPackage = async (req, res, next) => {
   let business;
@@ -7,7 +7,7 @@ const addClientToPackage = async (req, res, next) => {
   try {
     business = await await Business.findById(req.params.businessId);
 
-    if (clients == null) {
+    if (business == null) {
       const error = new Error("Cannot find client");
       error.status = 404;
       return next(error);
@@ -16,12 +16,20 @@ const addClientToPackage = async (req, res, next) => {
     return next(err);
   }
 
-  console.log(business.clients);
+  const client = business.clients.find((client) => client["_id"] == clientId);
+  const package = res.wantedPackage;
 
-  const client = clients.find((client) => client["_id"] == clientId);
+  const message = "Confirmation code has been sent to the owner !";
 
   res.client = client;
-  next();
+  package.client = client;
+
+  res.status(200).json({
+    package,
+    message: message,
+  });
+
+  return next();
 };
 
 module.exports = addClientToPackage;

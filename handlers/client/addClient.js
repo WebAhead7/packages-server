@@ -1,5 +1,4 @@
-const { Business } = require("../../db/db");
-
+const Business = require("../../db/business");
 const addClient = async (req, res, next) => {
   const owner = res.owner.owner;
   const businessId = owner.businessId;

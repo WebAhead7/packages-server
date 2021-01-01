@@ -1,4 +1,4 @@
-const { Business } = require("../../db/db");
+const Business = require("../../db/business");
 
 const updatePackage = async (req, res, next) => {
   const packageId = req.params.packageId;

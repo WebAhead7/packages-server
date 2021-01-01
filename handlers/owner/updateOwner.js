@@ -1,4 +1,4 @@
-const { Owner } = require("../../db/db");
+const Owner = require("../../db/owner");
 
 const updateOwner = async (req, res, next) => {
   const ownerId = req.params.id;

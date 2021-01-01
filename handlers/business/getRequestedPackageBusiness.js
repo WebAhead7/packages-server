@@ -1,4 +1,4 @@
-const { Business } = require("../../db/db");
+const Business = require("../../db/business");
 
 const getRequestedPackageBusiness = async (req, res, next) => {
   const businessId = req.params.businessId;

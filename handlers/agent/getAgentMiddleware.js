@@ -1,4 +1,4 @@
-const { Agent } = require("../../db/db");
+const Agent = require("../../db/agent");
 
 const getAgent = async (req, res, next) => {
   const agent_id = req.params.id;

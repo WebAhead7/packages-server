@@ -2,7 +2,7 @@ require("dotenv").config();
 const nodemailer = require("nodemailer");
 
 const confirmOwner = async (req, res, next) => {
-  const package = res.package;
+  const package = res.wantedPackage;
   const client = res.client;
   let isSent;
 
@@ -31,15 +31,6 @@ const confirmOwner = async (req, res, next) => {
     error.status = 400;
     next(error);
   }
-
-  const message = "Confirmation code has been sent to the owner !";
-
-  package.client = client;
-
-  return res.status(200).json({
-    package,
-    message: message,
-  });
 };
 
 module.exports = confirmOwner;

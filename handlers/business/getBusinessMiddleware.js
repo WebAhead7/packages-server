@@ -1,4 +1,4 @@
-const { Business } = require("../../db/db");
+const Business = require("../../db/business");
 
 const getBusiness = async (req, res, next) => {
   let business;

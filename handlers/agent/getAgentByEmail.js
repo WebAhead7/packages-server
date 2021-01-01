@@ -1,4 +1,4 @@
-const { Agent } = require("../../db/db");
+const Agent = require("../../db/agent");
 
 const getAgentByEmail = async (req, res, next) => {
   const email = req.body.email;

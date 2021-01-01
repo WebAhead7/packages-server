@@ -1,4 +1,4 @@
-const { Owner } = require("../../db/db");
+const Owner = require("../../db/owner");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 

@@ -1,4 +1,4 @@
-const { Agent } = require("../../db/db");
+const Agent = require("../../db/agent");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 

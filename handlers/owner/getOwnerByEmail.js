@@ -1,4 +1,4 @@
-const { Owner } = require("../../db/db");
+const Owner = require("../../db/owner");
 
 const getOwnerByEmail = async (req, res, next) => {
   const email = req.body.email;

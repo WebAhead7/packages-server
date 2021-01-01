@@ -1,4 +1,4 @@
-const { Agent } = require("../../db/db");
+const Agent = require("../../db/agent");
 
 const addPackageIdToAgent = async (req, res, next) => {
   const package_id = req.params.packageId;

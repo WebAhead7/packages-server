@@ -1,4 +1,4 @@
-const { Business } = require("../../db/db");
+const Business = require("../../db/business");
 
 const updateClient = async (req, res, next) => {
   const clientId = req.params.clientId;

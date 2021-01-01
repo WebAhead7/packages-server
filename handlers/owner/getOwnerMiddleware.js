@@ -1,4 +1,4 @@
-const { Owner } = require("../../db/db");
+const Owner = require("../../db/owner");
 
 const getOwnerMiddleware = async (req, res, next) => {
   let owner;

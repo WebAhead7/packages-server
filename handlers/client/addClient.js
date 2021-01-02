@@ -1,33 +1,26 @@
-const Business = require("../../db/business");
+const Client = require("../../db/Client");
 const addClient = async (req, res, next) => {
   const owner = res.owner.owner;
   const businessId = owner.businessId;
-
-  console.log(owner);
-
-  const client = {
+  let client;
+  const saveClient = new Client({
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     address: req.body.address,
     phone: req.body.phone,
     email: req.body.email,
-  };
+    businessId: businessId,
+  });
 
   try {
-    await Business.findOneAndUpdate(
-      { _id: businessId },
-      {
-        $push: {
-          clients: client,
-        },
-      }
-    );
-
-    res.status(201).json({ message: "Client added successfuly" });
+    client = await saveClient.save();
   } catch (err) {
     err.status = 400;
     return next(err);
   }
+
+  res.client = client;
+  next();
 };
 
 module.exports = addClient;

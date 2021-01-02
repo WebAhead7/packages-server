@@ -3,7 +3,6 @@ const Business = require("../../db/business");
 const addPackage = async (req, res, next) => {
   const businessId = res.owner.owner.businessId;
 
-  console.log(businessId);
   const package = {
     name: req.body.name,
     mid: req.body.mid,
@@ -15,7 +14,7 @@ const addPackage = async (req, res, next) => {
     clientId: req.body.clientId,
     confirmation: `0125${req.body.mid}grdr${req.body.track_number}548675`,
     clientConfirmation: `0125${req.body.mid}XYZII${req.body.track_number}5212`,
-    address: req.body.address,
+    address: businessId,
   };
   try {
     await Business.findOneAndUpdate(
@@ -29,6 +28,7 @@ const addPackage = async (req, res, next) => {
 
     return res.status(201).json({ message: "Package added successfuly" });
   } catch (err) {
+    console.log(err);
     err.status = 400;
     return next(err);
   }

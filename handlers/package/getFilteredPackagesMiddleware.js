@@ -1,10 +1,12 @@
+const { model } = require("../../db/business");
 const Business = require("../../db/business");
 
 const getFilteredPackagesMiddleware = async (req, res, next) => {
   let packages;
 
   try {
-    packages = await Business.find().select({
+    packages = await Business.find()
+    .select({
       "items.businessId": 1,
       "items.name": 1,
       "items.weight": 1,
@@ -15,7 +17,7 @@ const getFilteredPackagesMiddleware = async (req, res, next) => {
       "items.status": 1,
       "items.agentId": 1,
       "items._id": 1,
-      address: 1,
+      "items.address": 1,
     });
 
     packages = packages

@@ -1,6 +1,7 @@
 const Business = require("../../db/business");
 
 const addBusiness = async (req, res, next) => {
+  let newBusiness;
   const business = new Business({
     name: req.body.name,
     storeId: req.body.storeId,
@@ -15,12 +16,13 @@ const addBusiness = async (req, res, next) => {
   });
 
   try {
-    const newBusiness = await business.save();
-    res.status(201).json(newBusiness);
+    newBusiness = await business.save();
   } catch (err) {
     err.status = 400;
     return next(err);
   }
+  res.business = newBusiness;
+  return next();
 };
 
 module.exports = addBusiness;

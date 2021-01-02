@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 // const Address = require("./address");
 const addressSchema = require("./address");
+const Business = require("./business");
+
 const ObjectId = Schema.Types.ObjectId;
 
 const packageSchema = new Schema(
@@ -18,7 +20,7 @@ const packageSchema = new Schema(
     agentId: { type: String, default: "Pending" },
     confirmation: { type: String, required: true },
     clientConfirmation: { type: String, require: true },
-    address: { type: addressSchema, required: true },
+    address: { type: ObjectId, ref: "Business" },
   },
   { timestamps: true }
 );

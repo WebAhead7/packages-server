@@ -7,16 +7,22 @@ const addClientToPackage = async (req, res, next) => {
 
   try {
     package = await Package.findById(packageId)
-      .populate("client")
-      .execPopulate();
+      .populate({ path: "client", model: "Client", populate: "client" })
+      .populate({
+        path: "address",
+        model: "Business",
+        select: ["name", "mobile", "phone", "address"],
+      })
+      .select({ confirmation: 0, clientConfirmation: 0 })
+      .exec();
 
-    console.log(package);
     if (package == null) {
       const error = new Error("Cannot find client");
       error.status = 404;
       return next(error);
     }
   } catch (err) {
+    console.log(err);
     return next(err);
   }
 

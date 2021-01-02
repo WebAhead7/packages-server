@@ -1,7 +1,7 @@
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
-const confirmOwner = async (req, res, next) => {
+const confirmDelivery = async (req, res, next) => {
   const package = res.wantedPackage;
   let isSent;
 
@@ -18,11 +18,12 @@ const confirmOwner = async (req, res, next) => {
     //to: `${package.client.email}`
     to: "alaabashiy@gmail.com",
     subject: "Package update",
-    text: `Your package on it's way! get ready,
-           Give the following confirmation code to the agent when he/she arrives.
-           Confirmation code: ${package.clientConfirmation}`,
+    text: `Great news!!
+           Package delivered!`,
     // html: "<h1>HTML CAN BE SENT HERE IF NEEDED</h1><p>Yes Yes it is working</p>",
   };
+
+  res.status(200).json({ message: "Package delivered" });
 
   try {
     isSent = await transporter.sendMail(mailOptions);
@@ -35,4 +36,4 @@ const confirmOwner = async (req, res, next) => {
   return;
 };
 
-module.exports = confirmOwner;
+module.exports = confirmDelivery;

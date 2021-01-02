@@ -16,7 +16,11 @@ const getAllAgent = require("../handlers/agent/getAllAgent");
 const getOnePackageNext = require("../handlers/package/getOnePackageNext");
 const confirmOwner = require("../handlers/mail/confirmOwner");
 const confirmClient = require("../handlers/mail/confirmClient");
+const confirmDelivery = require("../handlers/mail/confirmDelivery");
+
 const confirmPickup = require("../handlers/agent/confirmPickup");
+const confirmDeliver = require("../handlers/agent/confirmDeliver");
+
 const getClientMiddleware = require("../handlers/client/getClientMiddleware");
 const getOneClient = require("../handlers/client/getOneClient");
 const addClientToPackage = require("../handlers/client/addClientToPackage");
@@ -46,6 +50,15 @@ router.post(
   updatePackageStatus,
   addClientToPackage,
   confirmClient
+);
+
+router.post(
+  "/agent/confirm_delivery/:businessId/:packageId",
+  authAgent,
+  getOnePackageNext,
+  confirmDeliver,
+  updatePackageStatus,
+  confirmDelivery
 );
 
 module.exports = router;

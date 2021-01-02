@@ -1,9 +1,21 @@
-const getOnePackageNext = (req, res, next) => {
-  const packageId = req.params.packageId;
-  const package = res.packages.find((package) => package["_id"] == packageId);
+const Package = require("../../db/package");
+
+const getOnePackageNext = async (req, res, next) => {
+  let package;
+
+  try {
+    package = await Package.findById(req.params.packageId);
+
+    if (package == null) {
+      const error = new Error("Cannot find package");
+      error.status = 404;
+      return next(error);
+    }
+  } catch (err) {
+    return next(err);
+  }
 
   res.wantedPackage = package;
-
   return next();
 };
 

@@ -3,7 +3,6 @@ const nodemailer = require("nodemailer");
 
 const confirmOwner = async (req, res, next) => {
   const package = res.wantedPackage;
-  const client = res.client;
   let isSent;
 
   const transporter = nodemailer.createTransport({
@@ -16,6 +15,7 @@ const confirmOwner = async (req, res, next) => {
 
   const mailOptions = {
     from: "codedmediagroups@gmail.com",
+    //to: `${package.client.email}`
     to: "alaabashiy@gmail.com",
     subject: "Package update",
     text: `Your package on it's way! get ready,

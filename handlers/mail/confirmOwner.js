@@ -28,6 +28,13 @@ const confirmOwner = async (req, res, next) => {
     text: `Your package is packed and ready to be sent`,
   };
 
+  const message = "Confirmation code has been sent to the owner !";
+
+  res.status(200).json({
+    package,
+    message: message,
+  });
+
   try {
     isSent = await transporter.sendMail(mailOptions);
 
@@ -40,12 +47,7 @@ const confirmOwner = async (req, res, next) => {
     next(error);
   }
 
-  const message = "Confirmation code has been sent to the owner !";
-
-  return res.status(200).json({
-    package,
-    message: message,
-  });
+  return;
 };
 
 module.exports = confirmOwner;

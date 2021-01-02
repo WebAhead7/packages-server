@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-// const Address = require("./address");
-const addressSchema = require("./address");
-const Business = require("./business");
 
+const Business = require("./business");
 const ObjectId = Schema.Types.ObjectId;
 
 const packageSchema = new Schema(
@@ -17,6 +15,7 @@ const packageSchema = new Schema(
     track_number: { type: String, required: true },
     businessId: { type: String, required: true },
     clientId: { type: String, required: true },
+    client: { type: ObjectId, ref: "Client" },
     agentId: { type: String, default: "Pending" },
     confirmation: { type: String, required: true },
     clientConfirmation: { type: String, require: true },
@@ -26,4 +25,4 @@ const packageSchema = new Schema(
 );
 
 const Package = mongoose.model("Package", packageSchema);
-module.exports = packageSchema;
+module.exports = Package;

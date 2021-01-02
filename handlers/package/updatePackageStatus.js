@@ -1,4 +1,4 @@
-const Business = require("../../db/business");
+const Package = require("../../db/package");
 
 const updatePackageStatus = async (req, res, next) => {
   const packageId = req.params.packageId;
@@ -7,13 +7,11 @@ const updatePackageStatus = async (req, res, next) => {
   const agent = res.agent.agent;
 
   try {
-    await Business.findOneAndUpdate(
-      { _id: `${businessId}`, "items._id": `${packageId}` },
+    await Package.findOneAndUpdate(
+      { _id: `${packageId}` },
       {
-        $set: {
-          "items.$.status": status,
-          "items.$.agentId": `${agent._id}`,
-        },
+        status: status,
+        agentId: agent._id,
       }
     );
   } catch (err) {

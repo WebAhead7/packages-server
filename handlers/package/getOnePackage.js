@@ -1,9 +1,27 @@
-const getOnePackage = (req, res, next) => {
-  const packageId = req.params.packageId;
+const Package = require("../../db/package");
 
-  const package = res.packages.find((package) => package["_id"] == packageId);
+const getOnePackage = async (req, res, next) => {
+  let package;
 
-  res.json(package);
+  try {
+    package = await Package.findById(req.params.packageId)
+      .populate({
+        path: "address",
+        model: "Business",
+        select: ["name", "mobile", "phone", "address"],
+      })
+      .exec();
+
+    if (package == null) {
+      const error = new Error("Cannot find package");
+      error.status = 404;
+      return next(error);
+    }
+  } catch (err) {
+    return next(err);
+  }
+
+  return res.status(200).json(package);
 };
 
 module.exports = getOnePackage;

@@ -1,10 +1,14 @@
 const Business = require("../../db/business");
+const Package = require("../../db/business");
+
 const deletePackage = async (req, res, next) => {
-  console.log(req.params);
+  const owner = res.owner.owner;
 
   try {
+    await Package.findOneAndDelete(req.params.packageId);
+
     await Business.findByIdAndUpdate(
-      { _id: `${req.params.businessId}` },
+      { _id: `${owner.businessId}` },
       { $pull: { items: { _id: `${req.params.packageId}` } } }
     );
     return res

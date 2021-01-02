@@ -9,7 +9,7 @@ const businessSchema = new Schema({
   name: { type: String, required: true },
   storeId: { type: String, required: true },
   category: { type: [String], required: true },
-  items: { type: [packageSchema] },
+  items: [{ type: ObjectId, ref: "Package" }],
   clients: [{ type: ObjectId, ref: "Client" }],
   phone: { type: Number, required: true },
   mobile: { type: Number, required: true },

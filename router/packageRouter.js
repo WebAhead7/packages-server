@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const getPackageMiddleware = require("../handlers/package/getPackageMiddleware");
+const getBusinessPackages = require("../handlers/package/getBusinessPackages");
 const getPackages = require("../handlers/package/getPackages");
 const getOnePackage = require("../handlers/package/getOnePackage");
 const getOnePackageNext = require("../handlers/package/getOnePackageNext");
@@ -15,12 +15,8 @@ const addPackage = require("../handlers/package/addPackage");
 const updatePackage = require("../handlers/package/updatePackage");
 const deletePackage = require("../handlers/package/deletePackage");
 
-router.get("/package/:businessId", getPackageMiddleware, getPackages);
-router.get(
-  "/package/:businessId/:packageId",
-  getPackageMiddleware,
-  getOnePackage
-);
+router.get("/package/:businessId", authOwner, getBusinessPackages);
+router.get("/package/one/:packageId", authOwner, getOnePackage);
 
 router.get("/package", getFilteredPackagesMiddleware, getFilteredPackages);
 

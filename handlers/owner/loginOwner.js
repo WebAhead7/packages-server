@@ -29,12 +29,12 @@ const loginOwner = async (req, res, next) => {
     next(err);
   }
 
-  const accessToken = jwt.sign(
-    { owner: owner },
-    process.env.ACCESS_TOKEN_SECRET
-  );
+  const accessToken = jwt.sign({ owner: owner }, process.env.SECRET);
 
-  res.status(200).json({ accessToken: accessToken });
+  owner.idImage = "";
+  owner.payment = "";
+
+  return res.status(201).json({ owner: owner, accessToken: accessToken });
 };
 
 module.exports = loginOwner;

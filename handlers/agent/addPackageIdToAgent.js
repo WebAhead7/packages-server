@@ -14,7 +14,7 @@ const addPackageIdToAgent = async (req, res, next) => {
     return next(err);
   }
 
-  next();
+  return next();
 };
 
 module.exports = addPackageIdToAgent;

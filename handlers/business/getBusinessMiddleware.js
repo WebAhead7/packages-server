@@ -4,7 +4,7 @@ const getBusiness = async (req, res, next) => {
   let business;
 
   try {
-    business = await (await Business.findById(req.params.id))
+    business = await Business.findById(req.params.id)
       .populate("clients")
       .execPopulate();
     if (business == null) {

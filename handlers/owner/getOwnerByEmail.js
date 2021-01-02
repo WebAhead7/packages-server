@@ -9,7 +9,7 @@ const getOwnerByEmail = async (req, res, next) => {
       email: email,
     });
 
-    if (owner == null || owner.length == 0) {
+    if (owner === null || owner.length === 0) {
       owner = false;
     }
   } catch (err) {
@@ -17,7 +17,7 @@ const getOwnerByEmail = async (req, res, next) => {
   }
 
   res.owner = owner;
-  next();
+  return next();
 };
 
 module.exports = getOwnerByEmail;

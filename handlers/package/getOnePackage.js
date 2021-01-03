@@ -10,6 +10,11 @@ const getOnePackage = async (req, res, next) => {
         model: "Business",
         select: ["name", "mobile", "phone", "address"],
       })
+      .populate({
+        path: "client",
+        model: "Client",
+        select: ["firstname", "lastname", "phone", "address"],
+      })
       .exec();
 
     if (package == null) {

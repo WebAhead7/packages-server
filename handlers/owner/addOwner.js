@@ -12,6 +12,7 @@ const addOwner = async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     idImage: req.body.idImage,
+    idNumber: req.body.idNumber,
     address: req.body.address,
     payment: req.body.payment,
   });

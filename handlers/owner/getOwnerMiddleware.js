@@ -4,7 +4,7 @@ const getOwnerMiddleware = async (req, res, next) => {
   let owner;
 
   try {
-    owner = await Owner.findById(req.params.id);
+    owner = await Owner.findById(res.ownerId);
     if (owner == null) {
       const error = new Error("Cannot find owner");
       error.status = 404;

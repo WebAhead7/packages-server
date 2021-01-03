@@ -16,6 +16,7 @@ const ownerSchema = new Schema(
     idImage: { type: String, required: true },
     role: { type: String, default: "owner" },
     businessId: { type: String, required: false },
+    idNumber: { type: Number, min: 9, required: true },
     address: { type: addressSchema, required: true },
     payment: { type: paymentSchema, required: true },
   },

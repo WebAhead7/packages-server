@@ -10,7 +10,7 @@ const getOwnerByEmail = require("../handlers/owner/getOwnerByEmail");
 const signUpMiddleware = require("../handlers/owner/signUpMiddleware");
 const authOwner = require("../handlers/owner/authOwner");
 
-router.get("/owner/:id", authOwner, getOwnerMiddleware, getOwner);
+router.get("/owner/profile", authOwner, getOwnerMiddleware, getOwner);
 router.put("/owner/:id", authOwner, updateOwner);
 router.post("/owner/login", getOwnerByEmail, loginOwner);
 router.post("/owner/signup", getOwnerByEmail, signUpMiddleware, addOwner);

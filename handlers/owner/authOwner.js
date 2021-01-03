@@ -24,6 +24,7 @@ const authenticateToken = async (req, res, next) => {
   }
 
   res.owner = verifiedToken;
+  res.ownerId = verifiedToken.owner._id;
   next();
 };
 

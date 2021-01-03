@@ -3,6 +3,9 @@ const Package = require("../../db/package");
 
 const addPackage = async (req, res, next) => {
   const businessId = res.owner.owner.businessId;
+
+  console.log(res.owner.owner.businessId);
+
   let package;
   const savePackage = new Package({
     name: req.body.name,
@@ -12,7 +15,6 @@ const addPackage = async (req, res, next) => {
     quantity: req.body.quantity,
     track_number: req.body.track_number,
     businessId: businessId,
-    businessId: req.body.businessId,
     clientId: req.body.clientId,
     client: req.body.clientId,
     confirmation: `0125${req.body.mid}grdr${req.body.track_number}548675`,

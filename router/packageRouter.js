@@ -15,7 +15,7 @@ const addPackage = require("../handlers/package/addPackage");
 const updatePackage = require("../handlers/package/updatePackage");
 const deletePackage = require("../handlers/package/deletePackage");
 
-router.get("/package/:businessId", authOwner, getBusinessPackages);
+router.get("/package", authOwner, getBusinessPackages);
 router.get("/package/one/:packageId", authOwner, getOnePackage);
 
 router.get("/package", getFilteredPackagesMiddleware, getFilteredPackages);

@@ -8,9 +8,17 @@ const addClient = require("../handlers/client/addClient");
 const authOwner = require("../handlers/owner/authOwner");
 const addClientToBusiness = require("../handlers/client/addClientToBusiness");
 const addBusinessIdToOwner = require("../handlers/owner/addBusinessIdToOwner");
-
+const getOwnerMiddleware = require("../handlers/owner/getOwnerMiddleware");
+const newAuth = require("../handlers/owner/newAuth");
 router.get("/business/:id", getBusinessMiddleware, getBusiness);
-router.post("/business", authOwner, addBusiness, addBusinessIdToOwner);
+router.post(
+  "/business",
+  authOwner,
+  addBusiness,
+  addBusinessIdToOwner,
+  getOwnerMiddleware,
+  newAuth
+);
 
 router.post("/business/addclient", authOwner, addClient, addClientToBusiness);
 

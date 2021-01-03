@@ -16,7 +16,7 @@ const packageSchema = new Schema(
     businessId: { type: String, required: true },
     clientId: { type: String, required: true },
     client: { type: ObjectId, ref: "Client" },
-    agentId: { type: String, default: "Pending" },
+    agentId: { type: ObjectId, ref: "Agent" },
     confirmation: { type: String, required: true },
     clientConfirmation: { type: String, require: true },
     address: { type: ObjectId, ref: "Business" },

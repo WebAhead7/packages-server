@@ -15,7 +15,10 @@ const updateOwner = async (req, res, next) => {
     return next(err);
   }
 
-  return res.status(201).json({ message: "Store created successfully!" });
+  res.message = { message: "Store created successfully!" };
+  res.ownerId = ownerId;
+  console.log("here", res.ownerId);
+  return next();
 };
 
 module.exports = updateOwner;

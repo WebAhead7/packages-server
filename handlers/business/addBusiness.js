@@ -22,6 +22,7 @@ const addBusiness = async (req, res, next) => {
     return next(err);
   }
   res.business = newBusiness;
+
   return next();
 };
 

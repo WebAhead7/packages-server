@@ -15,11 +15,10 @@ const addAgent = async (req, res, next) => {
     // vehicle_type: req.body.vehicle_type,
     // vehicle_no: req.body.vehicle_no,
     // id_num: req.body.id_num,
-    // licenseId: req.body.licenseId,
     // licenseImage: req.body.licenseImage,
     // licenseDate: req.body.licenseDate,
     // rating: req.body.rating,
-    // Bank: req.body.Bank,
+    // bank: req.body.bank,
     // monthly_paychec: req.body.monthly_paychec,
   });
 

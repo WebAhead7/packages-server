@@ -3,8 +3,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const addAgent = async (req, res, next) => {
-  console.log("sssss");
-
+  console.log("HEREEEEEEEE");
   const agent = new Agent({
     first_name: req.body.firstname,
     last_name: req.body.lastname,
@@ -23,12 +22,14 @@ const addAgent = async (req, res, next) => {
   });
 
   try {
+    console.log("TRY TRY TRY TRY TRY");
     const newAgent = await agent.save();
+    console.log(newAgent);
     const token = jwt.sign({ agent: newAgent }, process.env.SECRET);
 
-    res.status(201).json({ agent: newAgent, accessToken: token });
+    return res.status(201).json({ agent: newAgent, accessToken: token });
   } catch (err) {
-    err.status = 400;
+    err.status = 401;
     return next(err);
   }
 };

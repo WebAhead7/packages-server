@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const ObjectId = Schema.Types.ObjectId;
+const bankSchema = require("./bank");
+const addressSchema = require("./address");
 
 const agentSchema = new Schema(
   {
@@ -10,8 +12,8 @@ const agentSchema = new Schema(
     role: { type: String, default: "agent" },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    confirm: { type: String, required: true },
-    phone: { type: Number, required: true },
+    // confirm: { type: String, required: true },
+    // phone: { type: Number, required: true },
     // vehicle_type: { type: String, required: false },
     // vehicle_no: { type: Number, required: false },
     // id_num: { type: Number, required: false },
@@ -19,18 +21,10 @@ const agentSchema = new Schema(
     // licenseImage: { type: String, required: false },
     // licenseDate: { type: Date, required: false },
     // rating: { type: Number, default: 5 },
-    // bank: { type: BankSchema, required: false },
+    // bank: { type: bankSchema, required: false },
     // monthly_paychecks: { type: Boolean, required: false },
     items: { type: [String] },
-    // address: { type: AddressSchema, required: false },
-    // vehicle_type: { type: String, required: true },
-    // vehicle_no: { type: Number, required: true },
-    // id_num: { type: Number, required: true },
-    // licenseImage: { type: String, required: true },
-    // licenseDate: { type: String, required: true },
-    // rating: { type: Number, default: 5 },
-    // Bank: { type: BankSchema, required: false },
-    // monthly_paychecks: { type: Boolean, required: false },
+    // address: { type: addressSchema, required: false },
   },
   { timestamps: true }
 );

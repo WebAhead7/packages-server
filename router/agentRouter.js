@@ -12,7 +12,6 @@ const authAgent = require("../handlers/agent/authAgent");
 const addPackageIdToAgent = require("../handlers/agent/addPackageIdToAgent");
 const updatePackageStatus = require("../handlers/package/updatePackageStatus");
 const getAllAgent = require("../handlers/agent/getAllAgent");
-
 const getOnePackageNext = require("../handlers/package/getOnePackageNext");
 const confirmOwner = require("../handlers/mail/confirmOwner");
 const confirmClient = require("../handlers/mail/confirmClient");
@@ -25,13 +24,16 @@ const getClientMiddleware = require("../handlers/client/getClientMiddleware");
 const getOneClient = require("../handlers/client/getOneClient");
 const addClientToPackage = require("../handlers/client/addClientToPackage");
 
-const getPackageStatus = require("../handlers/package/getPackageStatus")
-
-router.get("/agent/:id", authAgent, getAgentMiddleware, getAgent);
+router.get("/agent/profile", authAgent, getAgentMiddleware, getAgent);
 router.put("/agent/:id", authAgent, updateAgent);
 
 router.get("/agent", getAllAgent, getAgent);
-router.get("/agent/package_status/:packageId", /*authAgent,*/getOnePackageNext, getPackageStatus)
+router.get(
+    "/agent/package_status/:packageId",
+    authAgent,
+    getOnePackageNext,
+    getPackageStatus
+);
 
 router.post("/agent/login", getAgentByEmail, loginAgent);
 router.post("/agent/signup", getAgentByEmail, signUpMiddleware, addAgent);

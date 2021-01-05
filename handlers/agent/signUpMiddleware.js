@@ -13,9 +13,8 @@ const signUpMiddleware = async (req, res, next) => {
 
     const hashed = await bcrypt.hash(req.body.password, 10);
     req.body.password = hashed;
-    console.log(req.body.password);
 
-    next();
+    return next();
   } catch (err) {
     next(err);
   }

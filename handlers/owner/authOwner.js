@@ -18,7 +18,6 @@ const authenticateToken = async (req, res, next) => {
     console.log(verifiedToken);
   } catch (err) {
     error.status = 403;
-    console.log("aaa");
     return next(error);
   }
 

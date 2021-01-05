@@ -17,6 +17,7 @@ const authenticateToken = async (req, res, next) => {
     error.status = 403;
     return next(error);
   }
+  console.log(updatedToken);
 
   if (updatedToken.agent.role != "agent") {
     error.status = 403;

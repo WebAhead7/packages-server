@@ -31,7 +31,7 @@ router.get("/agent/:id", authAgent, getAgentMiddleware, getAgent);
 router.put("/agent/:id", authAgent, updateAgent);
 
 router.get("/agent", getAllAgent, getAgent);
-router.get("/agent/package/:packageId", authAgent, getOnePackageNext, getPackageStatus)
+router.get("/agent/package_status/:packageId", /*authAgent,*/getOnePackageNext, getPackageStatus)
 
 router.post("/agent/login", getAgentByEmail, loginAgent);
 router.post("/agent/signup", getAgentByEmail, signUpMiddleware, addAgent);

@@ -10,6 +10,6 @@ const bankSchema = new Schema({
   account_no: { type: String, required: true },
 });
 
-const Bank = mongoose.model("Bank", bankSchema);
+// const Bank = mongoose.model("Bank", bankSchema);
 
-module.exports = Bank;
+module.exports = bankSchema;

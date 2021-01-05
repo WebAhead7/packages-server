@@ -1,7 +1,7 @@
 const Agent = require("../../db/agent");
 
 const getAgent = async (req, res, next) => {
-  const agent_id = req.params.id;
+  const agent_id = res.agent._id;
   let agentById;
   try {
     agentById = await Agent.findById(agent_id).exec();

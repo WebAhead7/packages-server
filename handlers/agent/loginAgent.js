@@ -33,7 +33,7 @@ const loginAgent = async (req, res, next) => {
 
   agent.payment = "";
 
-  res.status(200).json({ ...agent, accessToken: accessToken });
+  return res.status(200).json({ agent: agent, accessToken: accessToken });
 };
 
 module.exports = loginAgent;

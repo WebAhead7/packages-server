@@ -25,7 +25,7 @@ const getClientMiddleware = require("../handlers/client/getClientMiddleware");
 const getOneClient = require("../handlers/client/getOneClient");
 const addClientToPackage = require("../handlers/client/addClientToPackage");
 
-router.get("/agent/:id", authAgent, getAgentMiddleware, getAgent);
+router.get("/agent/profile", authAgent, getAgentMiddleware, getAgent);
 router.put("/agent/:id", authAgent, updateAgent);
 
 router.get("/agent", getAllAgent, getAgent);

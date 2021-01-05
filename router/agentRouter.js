@@ -12,7 +12,6 @@ const authAgent = require("../handlers/agent/authAgent");
 const addPackageIdToAgent = require("../handlers/agent/addPackageIdToAgent");
 const updatePackageStatus = require("../handlers/package/updatePackageStatus");
 const getAllAgent = require("../handlers/agent/getAllAgent");
-
 const getOnePackageNext = require("../handlers/package/getOnePackageNext");
 const confirmOwner = require("../handlers/mail/confirmOwner");
 const confirmClient = require("../handlers/mail/confirmClient");

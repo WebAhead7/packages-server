@@ -18,6 +18,7 @@ const deletePackage = require("../handlers/package/deletePackage");
 router.get("/package", authOwner, getBusinessPackages);
 router.get("/package/one/:packageId", authOwner, getOnePackage);
 
+
 router.get(
   "/package/filtered_packages",
   getFilteredPackagesMiddleware,

@@ -7,6 +7,7 @@ const authenticateToken = async (req, res, next) => {
   let verifiedToken;
   const error = new Error("Unauthorized");
 
+
   if (token == null) {
     error.status = 401;
     return next(error);
@@ -14,8 +15,10 @@ const authenticateToken = async (req, res, next) => {
 
   try {
     verifiedToken = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    console.log(verifiedToken);
   } catch (err) {
     error.status = 403;
+    console.log("aaa");
     return next(error);
   }
 

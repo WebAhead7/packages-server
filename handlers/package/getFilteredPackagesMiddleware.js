@@ -3,7 +3,6 @@ const Package = require("../../db/package");
 const getFilteredPackagesMiddleware = async (req, res, next) => {
   let packages;
   try {
-    console.log(req.body)
     packages = await Package.find()
       .select({
         confirmation: 0,

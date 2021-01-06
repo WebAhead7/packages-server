@@ -1,5 +1,5 @@
 const getFilteredPackages = (req, res, next) => {
-  console.log("whayt the  dsjcndflsdp")
+  console.log("whayt the  dsjcndflsdp");
   res.json(res.packages);
 };
 

@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const authenticateToken = async (req, res, next) => {
+  console.log(1, req.body)
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   let updatedToken;
@@ -22,6 +23,7 @@ const authenticateToken = async (req, res, next) => {
     error.status = 403;
     return next(error);
   }
+
 
   res.agent = updatedToken;
   next();

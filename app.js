@@ -26,6 +26,9 @@ db.once("open", () => console.log("Connected to Database"));
 
 app.use(cors());
 app.use(express.json());
+app.use(function (req, res, next) {
+  console.log(req.headers); next()
+})
 
 app.all(/agent/, agentRouter);
 app.all(/owner/, ownerRouter);

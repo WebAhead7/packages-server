@@ -32,10 +32,10 @@ router.put("/agent/:id", authAgent, updateAgent);
 
 router.get("/agent", getAllAgent, getAgent);
 router.get(
-  "/agent/package_status/:packageId",
-  authAgent,
-  getOnePackageNext,
-  getPackageStatus
+    "/agent/package_status/:packageId",
+    authAgent,
+    getOnePackageNext,
+    getPackageStatus
 );
 
 router.get("/agent/one_package/:packageId", authAgent, getOnePackage);
@@ -44,31 +44,31 @@ router.post("/agent/login", getAgentByEmail, loginAgent);
 router.post("/agent/signup", getAgentByEmail, signUpMiddleware, addAgent);
 
 router.post(
-  "/agent/request_package/:businessId/:packageId",
-  authAgent,
-  getOnePackageNext,
-  addPackageIdToAgent,
-  updatePackageStatus,
-  confirmOwner
+    "/agent/request_package/:businessId/:packageId",
+    authAgent,
+    getOnePackageNext,
+    addPackageIdToAgent,
+    updatePackageStatus,
+    confirmOwner
 );
 
 router.post(
-  "/agent/confirm_pickup/:businessId/:packageId",
-  authAgent,
-  getOnePackageNext,
-  confirmPickup,
-  updatePackageStatus,
-  addClientToPackage,
-  confirmClient
+    "/agent/confirm_pickup/:businessId/:packageId",
+    authAgent,
+    getOnePackageNext,
+    confirmPickup,
+    updatePackageStatus,
+    addClientToPackage,
+    confirmClient
 );
 
 router.post(
-  "/agent/confirm_delivery/:businessId/:packageId",
-  authAgent,
-  getOnePackageNext,
-  confirmDeliver,
-  updatePackageStatus,
-  confirmDelivery
+    "/agent/confirm_delivery/:businessId/:packageId",
+    authAgent,
+    getOnePackageNext,
+    confirmDeliver,
+    updatePackageStatus,
+    confirmDelivery
 );
 
 module.exports = router;

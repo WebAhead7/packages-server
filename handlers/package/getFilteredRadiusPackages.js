@@ -1,6 +1,7 @@
 const Package = require("../../db/package");
 
 const getFilteredRadiusPackages = (req, res, next) => {
+    console.log("ww")
     const agent = res.agent;
     const {
         myLocation,

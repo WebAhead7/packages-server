@@ -3,13 +3,12 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const addAgent = async (req, res, next) => {
-  console.log("HEREEEEEEEE");
   const agent = new Agent({
     first_name: req.body.firstname,
     last_name: req.body.lastname,
     email: req.body.email,
     password: req.body.password,
-    // address: req.body.address,
+    address: req.body.address,
     // items: req.body.items,
     // vehicle_type: req.body.vehicle_type,
     // vehicle_no: req.body.vehicle_no,

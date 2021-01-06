@@ -1,8 +1,7 @@
 const Agent = require("../../db/agent");
 
 const getAgent = (req, res, next) => {
-  const agentById = res.agent;
-  return res.status(200).json(agentById);
+  return res.status(200).json(res.agent);
 };
 
 module.exports = getAgent;

@@ -13,9 +13,12 @@ const addPackageIdToAgent = require("../handlers/agent/addPackageIdToAgent");
 const updatePackageStatus = require("../handlers/package/updatePackageStatus");
 const getAllAgent = require("../handlers/agent/getAllAgent");
 const getOnePackageNext = require("../handlers/package/getOnePackageNext");
+const getOnePackage = require("../handlers/package/getOnePackage");
+
 const confirmOwner = require("../handlers/mail/confirmOwner");
 const confirmClient = require("../handlers/mail/confirmClient");
 const confirmDelivery = require("../handlers/mail/confirmDelivery");
+const getPackageStatus = require("../handlers/package/getPackageStatus");
 
 const confirmPickup = require("../handlers/agent/confirmPickup");
 const confirmDeliver = require("../handlers/agent/confirmDeliver");
@@ -34,6 +37,8 @@ router.get(
     getOnePackageNext,
     getPackageStatus
 );
+
+router.get("/agent/one_package/:packageId", authAgent, getOnePackage);
 
 router.post("/agent/login", getAgentByEmail, loginAgent);
 router.post("/agent/signup", getAgentByEmail, signUpMiddleware, addAgent);

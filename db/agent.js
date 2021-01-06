@@ -24,7 +24,7 @@ const agentSchema = new Schema(
     // bank: { type: bankSchema, required: false },
     // monthly_paychecks: { type: Boolean, required: false },
     items: { type: [String] },
-    // address: { type: addressSchema, required: false },
+    address: { type: addressSchema, required: false },
   },
   { timestamps: true }
 );

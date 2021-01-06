@@ -14,11 +14,20 @@ const confirmOwner = require("../handlers/mail/confirmOwner");
 const addPackage = require("../handlers/package/addPackage");
 const updatePackage = require("../handlers/package/updatePackage");
 const deletePackage = require("../handlers/package/deletePackage");
+const getFilteredRadiusPackages = require("../handlers/package/getFilteredRadiusPackages")
 
 router.get("/package", authOwner, getBusinessPackages);
 router.get("/package/one/:packageId", authOwner, getOnePackage);
 
-router.get("/package/filtered_packages", getFilteredPackagesMiddleware, getFilteredPackages);
+// router.get("/package/filtered_packages", getFilteredPackagesMiddleware, getFilteredPackages);
+
+router.post(
+  "/package/fr/:radius",
+  authAgent,
+  getFilteredPackagesMiddleware,
+  getFilteredRadiusPackages,
+  getFilteredPackages
+);
 
 router.post("/package/add", authOwner, addPackage);
 router.put("/package/:packageId", authOwner, updatePackage);

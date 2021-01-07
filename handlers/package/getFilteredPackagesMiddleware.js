@@ -11,7 +11,7 @@ const getFilteredPackagesMiddleware = async (req, res, next) => {
       .populate({
         path: "address",
         model: "Business",
-        select: ["name", "mobile", "phone", "address"],
+        select: ["name", "mobile", "phone", "address", "category"],
       })
       .exec();
 

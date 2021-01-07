@@ -4,7 +4,7 @@ const getFilteredRadiusPackages = (req, res, next) => {
   const agent = res.agent;
   const { latitude, longitude } = req.body;
 
-  const radius = 350;
+  const radious = req.params.radious;
 
   const packages = res.packages.filter((package) => {
     if (
@@ -13,7 +13,7 @@ const getFilteredRadiusPackages = (req, res, next) => {
         longitude,
         package.address.address.latitude,
         package.address.address.longitude
-      ) <= radius
+      ) <= radious
     )
       return package;
   });

@@ -22,9 +22,8 @@ router.get("/package/one/:packageId", authOwner, getOnePackage);
 // router.get("/package/filtered_packages", getFilteredPackagesMiddleware, getFilteredPackages);
 
 router.post(
-  "/package/fr/:radius",
+  "/package/fr/:radious",
   authAgent,
-
   getFilteredPackagesMiddleware,
   getFilteredRadiusPackages,
   getFilteredPackages
